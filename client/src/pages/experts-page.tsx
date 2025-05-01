@@ -329,31 +329,6 @@ const ExpertsPage = () => {
         <meta name="description" content="Meet our team of professional security experts and learn about our advanced security testing services." />
       </Helmet>
       
-      {/* Hero Section */}
-      <div className="bg-primary py-20 relative overflow-hidden">
-        <div className="absolute inset-0 cyber-grid opacity-20"></div>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl font-bold mb-4">Our Security Experts</h1>
-            <p className="text-muted-foreground text-lg mb-8">
-              Our team of certified security professionals brings years of experience to help protect your digital assets from emerging threats.
-            </p>
-            <div className="flex justify-center gap-4">
-              <Link href="#services">
-                <Button className="bg-secondary text-primary hover:bg-secondary/90">
-                  View Services
-                </Button>
-              </Link>
-              <Link href="#contact">
-                <Button variant="outline" className="border-secondary/40 hover:border-secondary">
-                  Contact an Expert
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-      
       {/* Experts Grid */}
       <div className="bg-background py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -372,79 +347,7 @@ const ExpertsPage = () => {
         </div>
       </div>
       
-      {/* Testimonials */}
-      <div className="bg-primary py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4">What Clients Say</h2>
-            <p className="text-muted-foreground">
-              Don't just take our word for it - hear from organizations we've helped secure
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <Card className="bg-background border-secondary/20">
-              <CardContent className="p-6">
-                <div className="flex mb-4">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="h-5 w-5 text-yellow-500 fill-yellow-500" />
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground mb-6">
-                  "The SecureScout team found critical vulnerabilities in our application that our previous security vendor missed. Their detailed reporting and remediation guidance made it easy for our developers to fix the issues quickly."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-secondary/30 to-accent/30 mr-3"></div>
-                  <div>
-                    <p className="font-medium">Michael Roberts</p>
-                    <p className="text-xs text-muted-foreground">CTO, FinTech Innovations</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-background border-secondary/20">
-              <CardContent className="p-6">
-                <div className="flex mb-4">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="h-5 w-5 text-yellow-500 fill-yellow-500" />
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground mb-6">
-                  "Working with Sarah and the web application security team was an excellent experience. They not only identified vulnerabilities but also provided training to our development team on secure coding practices."
-                </p>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent/30 to-secondary/30 mr-3"></div>
-                  <div>
-                    <p className="font-medium">Jennifer Chen</p>
-                    <p className="text-xs text-muted-foreground">Security Director, E-commerce Plus</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-background border-secondary/20">
-              <CardContent className="p-6">
-                <div className="flex mb-4">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star key={star} className="h-5 w-5 text-yellow-500 fill-yellow-500" />
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground mb-6">
-                  "The cloud security assessment performed by David's team was invaluable. They identified misconfigurations in our AWS environment that could have led to a serious data breach. Highly recommended!"
-                </p>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/30 to-secondary/30 mr-3"></div>
-                  <div>
-                    <p className="font-medium">Robert Jackson</p>
-                    <p className="text-xs text-muted-foreground">Cloud Architect, HealthTech Solutions</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
+
       
       {/* Services Section */}
       <div id="services" className="bg-background py-20">
