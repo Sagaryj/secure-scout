@@ -209,8 +209,8 @@ const PricingPage = () => {
         { included: true, text: "API access" },
         { included: true, text: "Email notifications" }
       ],
-      buttonText: "Get Started",
-      buttonLink: "/auth?tab=register",
+      buttonText: "Subscribe Now",
+      buttonLink: "/payment?plan=professional",
       highlighted: true,
       popular: true
     },
@@ -226,7 +226,7 @@ const PricingPage = () => {
         { included: true, text: "Priority support" }
       ],
       buttonText: "Contact Sales",
-      buttonLink: "/auth?tab=register"
+      buttonLink: "/payment?plan=enterprise"
     }
   ];
 
@@ -260,7 +260,7 @@ const PricingPage = () => {
                   Contact our sales team for a tailored enterprise solution to meet your specific security testing requirements.
                 </p>
               </div>
-              <Link href="/auth?tab=register">
+              <Link href="/contact">
                 <Button className="whitespace-nowrap bg-secondary text-primary px-6 py-3 hover:bg-secondary/90">
                   Talk to Sales
                 </Button>
@@ -316,7 +316,7 @@ const PricingPage = () => {
                     <span>Quarterly security reviews and roadmap planning</span>
                   </li>
                 </ul>
-                <Link href="/auth?tab=register">
+                <Link href="/contact">
                   <Button variant="outline" className="border-secondary text-secondary hover:bg-secondary hover:text-primary">
                     Contact Enterprise Sales
                   </Button>
