@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { Helmet } from "react-helmet";
-import RazorpayPayment from "@/components/razorpay-payment";
+import CardPayment from "@/components/card-payment";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
@@ -49,7 +49,7 @@ const PaymentPage = () => {
   // Default to professional if invalid plan is passed
   const selectedPlan = planDetails[plan as keyof typeof planDetails] || planDetails.professional;
 
-  const handlePaymentSuccess = (paymentId: string, orderId: string, signature: string) => {
+  const handlePaymentSuccess = (transactionId: string) => {
     setPaymentSuccess(true);
     
     toast({
@@ -117,12 +117,10 @@ const PaymentPage = () => {
                 </CardContent>
               </Card>
             ) : (
-              <RazorpayPayment
-                amount={selectedPlan.amount / 100} // Convert to INR
-                name="SecureScout"
+              <CardPayment
+                amount={selectedPlan.amount / 100} // Convert to USD from cents
+                planName={selectedPlan.name}
                 description={selectedPlan.description}
-                email=""
-                contact=""
                 onSuccess={handlePaymentSuccess}
                 onFailure={handlePaymentFailure}
               />
