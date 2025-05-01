@@ -13,7 +13,17 @@ type ExpertCardProps = {
 const ExpertCard = ({ name, title, bio, imageUrl }: ExpertCardProps) => (
   <Card className="bg-primary/70 rounded-xl overflow-hidden border border-secondary/20 hover:border-secondary/40 transition-all">
     <div className="relative">
-      <div className="w-full h-64 bg-gradient-to-br from-secondary/20 to-accent/20"></div>
+      {imageUrl ? (
+        <div className="w-full h-64 bg-primary/80 overflow-hidden">
+          <img 
+            src={imageUrl} 
+            alt={`${name} - ${title}`} 
+            className="w-full h-full object-cover object-center opacity-90"
+          />
+        </div>
+      ) : (
+        <div className="w-full h-64 bg-gradient-to-br from-secondary/20 to-accent/20"></div>
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent"></div>
     </div>
     <div className="p-6 relative -mt-12">
@@ -42,22 +52,26 @@ const ExpertsSection = () => {
     {
       name: "Alex Morgan",
       title: "Chief Security Officer",
-      bio: "15+ years of experience in penetration testing and security assessments for Fortune 500 companies."
+      bio: "15+ years of experience in penetration testing and security assessments for Fortune 500 companies.",
+      imageUrl: "/images/experts/expert1.jpg"
     },
     {
       name: "Sarah Chen",
       title: "Lead Web Application Pentester",
-      bio: "Specialized in advanced web application security and secure coding practices."
+      bio: "Specialized in advanced web application security and secure coding practices.",
+      imageUrl: "/images/experts/expert2.png"
     },
     {
       name: "David Wilson",
       title: "Network Security Specialist",
-      bio: "Expert in network infrastructure security and cloud environment protection."
+      bio: "Expert in network infrastructure security and cloud environment protection.",
+      imageUrl: "/images/experts/expert3.png"
     },
     {
       name: "Maya Patel",
       title: "Exploit Development Lead",
-      bio: "Specialized in zero-day research and exploit development for various platforms."
+      bio: "Specialized in zero-day research and exploit development for various platforms.",
+      imageUrl: "/images/experts/expert4.png"
     }
   ];
 

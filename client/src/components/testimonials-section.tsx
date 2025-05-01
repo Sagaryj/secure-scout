@@ -12,7 +12,20 @@ type TestimonialProps = {
   avatarSeed?: string;
 };
 
+type TestimonialExpertImageMap = {
+  [key: string]: string;
+};
+
+const expertImageMap: TestimonialExpertImageMap = {
+  "Samantha Chen": "/images/experts/expert2.png",
+  "Michael Rodriguez": "/images/experts/expert1.jpg",
+  "David Wilson": "/images/experts/expert3.png",
+  "Priya Sharma": "/images/experts/expert4.png"
+};
+
 const Testimonial = ({ quote, author, title, company, rating, avatarSeed }: TestimonialProps) => {
+  const expertImage = expertImageMap[author];
+  
   return (
     <Card className="bg-primary/50 border-secondary/20 backdrop-blur-sm transition-all duration-300 hover:border-secondary/40 hover:shadow-lg">
       <CardContent className="p-6">
@@ -28,12 +41,18 @@ const Testimonial = ({ quote, author, title, company, rating, avatarSeed }: Test
           "{quote}"
         </blockquote>
         <div className="flex items-center">
-          <Avatar className="h-10 w-10 mr-3 border border-secondary/30">
-            <AvatarFallback className="bg-secondary/10 text-secondary">
-              {author.split(' ').map(name => name[0]).join('')}
-            </AvatarFallback>
-            {avatarSeed && (
-              <AvatarImage src={`https://api.dicebear.com/6.x/initials/svg?seed=${avatarSeed}`} />
+          <Avatar className="h-10 w-10 mr-3 border border-secondary/30 overflow-hidden">
+            {expertImage ? (
+              <AvatarImage src={expertImage} alt={author} />
+            ) : (
+              <>
+                <AvatarFallback className="bg-secondary/10 text-secondary">
+                  {author.split(' ').map(name => name[0]).join('')}
+                </AvatarFallback>
+                {avatarSeed && (
+                  <AvatarImage src={`https://api.dicebear.com/6.x/initials/svg?seed=${avatarSeed}`} />
+                )}
+              </>
             )}
           </Avatar>
           <div>
