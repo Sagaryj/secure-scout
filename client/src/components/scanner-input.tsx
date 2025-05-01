@@ -83,95 +83,150 @@ const Scanner = ({ onScanComplete, className = "", forceScanType }: ScannerProps
     scanMutation.mutate(values);
   }
 
+  const showFreeBadge = forceScanType === "free" || !forceScanType;
+  
   return (
-    <Card className={`bg-primary/80 backdrop-blur-md border-secondary/30 ${className}`}>
-      <CardContent className="p-6">
-        <div className="absolute -top-4 -right-4 bg-accent px-3 py-1 rounded-full text-xs font-medium">
+    <Card className={`bg-primary/80 backdrop-blur-md border-secondary/30 relative ${className}`}>
+      {showFreeBadge && (
+        <Badge className="absolute -top-2 -right-2 bg-secondary text-primary px-3 py-1">
           Free Scan
+        </Badge>
+      )}
+      
+      <CardContent className="p-6 relative">
+        {/* 3D Effect Background */}
+        <div className="absolute inset-0 opacity-20 z-0 overflow-hidden rounded-xl">
+          <ThreeScene />
         </div>
-        <h3 className="text-xl font-semibold mb-4">Quick Security Scan</h3>
         
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="targetUrl"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Website URL or IP Address</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                        <Globe className="h-4 w-4 text-muted-foreground" />
-                      </div>
-                      <Input
-                        placeholder="https://example.com"
-                        className="pl-10 pr-28 bg-background border-secondary/30 placeholder:text-muted-foreground/70 focus:ring-secondary/50 focus:border-secondary/50"
-                        {...field}
-                      />
-                      <div className="absolute inset-y-0 right-0 flex items-center">
-                        <Button 
-                          type="submit" 
-                          className="h-full rounded-l-none bg-secondary text-primary hover:bg-secondary/90"
-                          disabled={isScanning || scanMutation.isPending}
-                        >
-                          {isScanning || scanMutation.isPending ? 'Scanning...' : 'Scan Now'}
-                        </Button>
-                      </div>
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            
-            <div className="bg-primary/50 rounded-lg p-4 border border-secondary/20">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-medium">Scan Options</span>
-                <span className="text-xs text-muted-foreground">Advanced settings</span>
-              </div>
-              
+        <div className="relative z-10">
+          <h3 className="text-xl font-semibold mb-4">
+            {forceScanType === "deep" ? "Deep Security Scan" : "Security Scanner"}
+          </h3>
+          
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
                 control={form.control}
-                name="scanType"
+                name="targetUrl"
                 render={({ field }) => (
                   <FormItem>
+                    <FormLabel>Website URL or IP Address</FormLabel>
                     <FormControl>
-                      <RadioGroup 
-                        onValueChange={field.onChange} 
-                        defaultValue={field.value}
-                        className="grid grid-cols-1 sm:grid-cols-2 gap-3"
-                      >
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="quick" id="quick" />
-                          </FormControl>
-                          <FormLabel htmlFor="quick" className="font-normal">
-                            Quick Scan
-                            <span className="block text-xs text-muted-foreground">5-10 minutes</span>
-                          </FormLabel>
-                        </FormItem>
-                        <FormItem className="flex items-center space-x-3 space-y-0">
-                          <FormControl>
-                            <RadioGroupItem value="deep" id="deep" />
-                          </FormControl>
-                          <FormLabel htmlFor="deep" className="font-normal">
-                            Deep Scan
-                            <span className="block text-xs text-muted-foreground">30-60 minutes</span>
-                          </FormLabel>
-                        </FormItem>
-                      </RadioGroup>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                          <Globe className="h-4 w-4 text-muted-foreground" />
+                        </div>
+                        <Input
+                          placeholder="https://example.com"
+                          className="pl-10 pr-28 bg-background/80 backdrop-blur-sm border-secondary/30 placeholder:text-muted-foreground/70 focus:ring-secondary/50 focus:border-secondary/50"
+                          {...field}
+                          disabled={isScanning}
+                        />
+                        <div className="absolute inset-y-0 right-0 flex items-center">
+                          <Button 
+                            type="submit" 
+                            className="h-full rounded-l-none bg-secondary text-primary hover:bg-secondary/90"
+                            disabled={isScanning}
+                          >
+                            {isScanning ? (
+                              <div className="flex items-center">
+                                <span className="animate-spin mr-2">⟳</span>
+                                <span>Scanning...</span>
+                              </div>
+                            ) : (
+                              "Scan Now"
+                            )}
+                          </Button>
+                        </div>
+                      </div>
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
-            </div>
-            
-            <div className="text-center text-xs text-muted-foreground">
-              By using our scanner, you confirm this is your own website or you have permission to scan it
-            </div>
-          </form>
-        </Form>
+              
+              {!forceScanType && (
+                <div className="bg-primary/50 backdrop-blur-sm rounded-lg p-4 border border-secondary/20">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm font-medium">Scan Options</span>
+                    <span className="text-xs text-muted-foreground">Security levels</span>
+                  </div>
+                  
+                  <FormField
+                    control={form.control}
+                    name="scanType"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <RadioGroup 
+                            onValueChange={field.onChange} 
+                            defaultValue={field.value}
+                            className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+                            disabled={isScanning}
+                          >
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="quick" id="quick" />
+                              </FormControl>
+                              <FormLabel htmlFor="quick" className="font-normal">
+                                Quick Scan
+                                <span className="block text-xs text-muted-foreground">5-10 minutes</span>
+                              </FormLabel>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="deep" id="deep" />
+                              </FormControl>
+                              <FormLabel htmlFor="deep" className="font-normal">
+                                Deep Scan
+                                <span className="block text-xs text-muted-foreground">30-60 minutes</span>
+                                {!user && <span className="block text-xs text-accent">Requires subscription</span>}
+                              </FormLabel>
+                            </FormItem>
+                          </RadioGroup>
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              )}
+              
+              {forceScanType === "deep" && (
+                <div className="bg-primary/50 rounded-lg p-4 border border-secondary/20">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h4 className="font-medium">Deep Security Scan</h4>
+                      <p className="text-xs text-muted-foreground">30-60 minutes, comprehensive analysis</p>
+                    </div>
+                    {!user && (
+                      <Link href="/auth?tab=register">
+                        <Button variant="outline" size="sm" className="border-secondary text-secondary hover:bg-secondary hover:text-primary">
+                          Sign Up Required
+                        </Button>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              )}
+              
+              {forceScanType === "free" && (
+                <div className="bg-primary/50 rounded-lg p-4 border border-secondary/20">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h4 className="font-medium">Free Quick Scan</h4>
+                      <p className="text-xs text-muted-foreground">5-10 minutes, basic analysis</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              <div className="text-center text-xs text-muted-foreground">
+                By using our scanner, you confirm this is your own website or you have permission to scan it
+              </div>
+            </form>
+          </Form>
+        </div>
       </CardContent>
     </Card>
   );

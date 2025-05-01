@@ -9,6 +9,9 @@ import AuthPage from "@/pages/auth-page";
 import DashboardPage from "@/pages/dashboard-page";
 import PricingPage from "@/pages/pricing-page";
 import ExpertsPage from "@/pages/experts-page";
+import ScanFreePage from "@/pages/scan-free-page";
+import ScanDeepPage from "@/pages/scan-deep-page";
+import ContactPage from "@/pages/contact-page";
 import { ProtectedRoute } from "./lib/protected-route";
 import { AuthProvider } from "./hooks/use-auth";
 import Header from "./components/header";
@@ -21,6 +24,9 @@ function Router() {
       <Route path="/auth" component={AuthPage} />
       <Route path="/pricing" component={PricingPage} />
       <Route path="/experts" component={ExpertsPage} />
+      <Route path="/contact" component={ContactPage} />
+      <Route path="/scan/free" component={ScanFreePage} />
+      <Route path="/scan/deep" component={ScanDeepPage} />
       <ProtectedRoute path="/dashboard" component={DashboardPage} />
       <Route component={NotFound} />
     </Switch>

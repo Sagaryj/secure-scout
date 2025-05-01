@@ -38,7 +38,7 @@ const HeroSection = () => {
               </li>
               <li className="flex items-start space-x-3">
                 <CheckCircle className="text-secondary mt-1 h-5 w-5" />
-                <span>Exploit to assess the business risk</span>
+                <span>Comprehensive vulnerability assessment</span>
               </li>
               <li className="flex items-start space-x-3">
                 <CheckCircle className="text-secondary mt-1 h-5 w-5" />
@@ -90,12 +90,24 @@ const HeroSection = () => {
         <div className="mt-16 border-t border-secondary/20 pt-8">
           <p className="text-center text-sm text-muted-foreground mb-6">Trusted by 1,500+ security teams in 119+ countries</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center opacity-70">
-            <div className="h-6 w-20 bg-secondary/20 rounded-md animate-pulse"></div>
-            <div className="h-6 w-24 bg-secondary/20 rounded-md animate-pulse"></div>
-            <div className="h-6 w-16 bg-secondary/20 rounded-md animate-pulse"></div>
-            <div className="h-6 w-24 bg-secondary/20 rounded-md animate-pulse"></div>
-            <div className="h-6 w-20 bg-secondary/20 rounded-md animate-pulse"></div>
-            <div className="h-6 w-16 bg-secondary/20 rounded-md animate-pulse"></div>
+            <div className="h-8 flex items-center">
+              <span className="text-lg font-bold text-secondary/80">Vodafone</span>
+            </div>
+            <div className="h-8 flex items-center">
+              <span className="text-lg font-bold text-secondary/80">Accenture</span>
+            </div>
+            <div className="h-8 flex items-center">
+              <span className="text-lg font-bold text-secondary/80">Microsoft</span>
+            </div>
+            <div className="h-8 flex items-center">
+              <span className="text-lg font-bold text-secondary/80">IBM</span>
+            </div>
+            <div className="h-8 flex items-center">
+              <span className="text-lg font-bold text-secondary/80">Cisco</span>
+            </div>
+            <div className="h-8 flex items-center">
+              <span className="text-lg font-bold text-secondary/80">Amazon</span>
+            </div>
           </div>
         </div>
       </div>
