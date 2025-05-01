@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { Link } from "wouter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
-import { Loader2, CheckCircle2, AlertCircle, AlertTriangle, Info, XCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Loader2, CheckCircle2, AlertCircle, AlertTriangle, Info, XCircle, ShieldAlert, Zap } from "lucide-react";
 import { getScanStatus, getSeverityColor, getScanStatusColor, formatDate } from "@/lib/scan-utils";
 
 type ScanResultsProps = {
@@ -219,6 +221,20 @@ const ScanResults = ({ scanId, className = "" }: ScanResultsProps) => {
             </CardContent>
           </Card>
           
+          <div className="mt-4 mb-8 p-4 bg-accent/10 border border-accent/30 rounded-lg">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <div>
+                <h4 className="text-lg font-semibold">Ready to fix these vulnerabilities?</h4>
+                <p className="text-sm text-muted-foreground">
+                  Our premium plans offer detailed remediation steps and professional support to fix these issues.
+                </p>
+              </div>
+              <a href="/pricing" className="whitespace-nowrap bg-secondary text-primary px-6 py-3 rounded-md font-medium hover:bg-secondary/90 transition-colors">
+                Fix It Now
+              </a>
+            </div>
+          </div>
+
           <h4 className="text-lg font-medium mb-4">Detailed Findings</h4>
           
           {vulnerabilities && vulnerabilities.length > 0 ? (

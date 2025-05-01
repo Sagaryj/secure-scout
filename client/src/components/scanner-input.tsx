@@ -36,6 +36,12 @@ const Scanner = ({ onScanComplete, className = "", forceScanType }: ScannerProps
   const [isScanning, setIsScanning] = useState(false);
   const { user } = useAuth();
   const [, navigate] = useLocation();
+  
+  // Get the number of basic scans from localStorage
+  const [basicScanCount, setBasicScanCount] = useState<number>(() => {
+    const count = localStorage.getItem('basicScanCount');
+    return count ? parseInt(count, 10) : 0;
+  });
 
   const form = useForm<z.infer<typeof scanRequestSchema>>({
     resolver: zodResolver(scanRequestSchema),
@@ -78,6 +84,39 @@ const Scanner = ({ onScanComplete, className = "", forceScanType }: ScannerProps
       });
       return;
     }
+    
+    // Check if basic scan limit is reached for non-subscribed users
+    if ((values.scanType === "quick" || forceScanType === "free") && !user && basicScanCount >= 3) {
+      navigate("/pricing");
+      toast({
+        title: "Basic Scan Limit Reached",
+        description: "You've reached the limit of 3 basic scans. Please subscribe for unlimited scans.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // If this is a basic scan, increment the count
+    if ((values.scanType === "quick" || forceScanType === "free") && !user) {
+      const newCount = basicScanCount + 1;
+      setBasicScanCount(newCount);
+      localStorage.setItem('basicScanCount', newCount.toString());
+      
+      // Show a toast if they're getting close to the limit
+      if (newCount === 2) {
+        toast({
+          title: "Basic Scan Limit",
+          description: "You have 1 scan remaining in your basic plan.",
+          variant: "default",
+        });
+      } else if (newCount === 3) {
+        toast({
+          title: "Basic Scan Limit Reached",
+          description: "This is your last scan in the basic plan. Consider upgrading for unlimited scans.",
+          variant: "default",
+        });
+      }
+    }
 
     setIsScanning(true);
     scanMutation.mutate(values);
@@ -89,7 +128,7 @@ const Scanner = ({ onScanComplete, className = "", forceScanType }: ScannerProps
     <Card className={`bg-primary/80 backdrop-blur-md border-secondary/30 relative ${className}`}>
       {showFreeBadge && (
         <Badge className="absolute -top-2 -right-2 bg-secondary text-primary px-3 py-1">
-          Free Scan
+          Basic Scan
         </Badge>
       )}
       
@@ -214,7 +253,7 @@ const Scanner = ({ onScanComplete, className = "", forceScanType }: ScannerProps
                 <div className="bg-primary/50 rounded-lg p-4 border border-secondary/20">
                   <div className="flex justify-between items-center">
                     <div>
-                      <h4 className="font-medium">Free Quick Scan</h4>
+                      <h4 className="font-medium">Basic Quick Scan</h4>
                       <p className="text-xs text-muted-foreground">5-10 minutes, basic analysis</p>
                     </div>
                   </div>
