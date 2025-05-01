@@ -13,6 +13,7 @@ import ScanBasicPage from "@/pages/scan-basic-page";
 import ScanDeepPage from "@/pages/scan-deep-page";
 import ContactPage from "@/pages/contact-page";
 import PaymentPage from "@/pages/payment-page";
+import FeedbackPage from "@/pages/feedback-page";
 import { ProtectedRoute } from "./lib/protected-route";
 import { AuthProvider } from "./hooks/use-auth";
 import Header from "./components/header";
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/scan/free" component={ScanBasicPage} />
       <Route path="/scan/deep" component={ScanDeepPage} />
       <Route path="/payment" component={PaymentPage} />
+      <Route path="/feedback" component={FeedbackPage} />
       <ProtectedRoute path="/dashboard" component={DashboardPage} />
       <Route component={NotFound} />
     </Switch>

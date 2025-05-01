@@ -92,6 +92,12 @@ const Header = () => {
             >
               Contact Us
             </Link>
+            <Link 
+              href="/feedback" 
+              className={`text-sm font-medium transition-colors ${isActive('/feedback') ? 'text-secondary' : 'hover:text-secondary'}`}
+            >
+              Feedback
+            </Link>
           </nav>
           
           <div className="hidden md:flex items-center space-x-4">
@@ -219,6 +225,14 @@ const Header = () => {
                       className={`text-lg font-medium transition-colors ${isActive('/contact') ? 'text-secondary' : ''}`}
                     >
                       Contact Us
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link 
+                      href="/feedback" 
+                      className={`text-lg font-medium transition-colors ${isActive('/feedback') ? 'text-secondary' : ''}`}
+                    >
+                      Feedback
                     </Link>
                   </SheetClose>
                   
