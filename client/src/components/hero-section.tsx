@@ -38,7 +38,7 @@ const HeroSection = () => {
               </li>
             </ul>
             <div className="pt-4 flex flex-wrap gap-4">
-              <Link href="/scan/free">
+              <Link href="/scan/basic">
                 <Button size="lg" className="bg-secondary text-primary hover:bg-secondary/90 glow-effect">
                   Scan Now
                 </Button>
@@ -84,7 +84,7 @@ const HeroSection = () => {
                 </div>
                 
                 <div className="mt-6 flex justify-center">
-                  <Link href="/scan/free">
+                  <Link href="/scan/basic">
                     <Button size="lg" className="bg-secondary text-primary hover:bg-secondary/90 glow-effect">
                       Try It Now
                     </Button>

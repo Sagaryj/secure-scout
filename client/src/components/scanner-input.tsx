@@ -28,7 +28,7 @@ import ThreeScene from "./three-scene";
 type ScannerProps = {
   onScanComplete?: (scanId: number) => void;
   className?: string;
-  forceScanType?: "free" | "deep";
+  forceScanType?: "free" | "basic" | "deep";
 };
 
 const Scanner = ({ onScanComplete, className = "", forceScanType }: ScannerProps) => {

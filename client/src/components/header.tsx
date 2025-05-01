@@ -63,7 +63,7 @@ const Header = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="bg-primary border-secondary/30">
                 <DropdownMenuItem asChild>
-                  <Link href="/scan/free" className="cursor-pointer">
+                  <Link href="/scan/basic" className="cursor-pointer">
                     Basic Scan
                   </Link>
                 </DropdownMenuItem>
@@ -180,8 +180,8 @@ const Header = () => {
                     <div className="space-y-2 pl-2">
                       <SheetClose asChild>
                         <Link 
-                          href="/scan/free" 
-                          className={`text-sm font-medium block py-1 transition-colors ${isActive('/scan/free') ? 'text-secondary' : ''}`}
+                          href="/scan/basic" 
+                          className={`text-sm font-medium block py-1 transition-colors ${isActive('/scan/basic') || isActive('/scan/free') ? 'text-secondary' : ''}`}
                         >
                           Basic Scan
                         </Link>

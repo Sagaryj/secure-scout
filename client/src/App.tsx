@@ -9,7 +9,7 @@ import AuthPage from "@/pages/auth-page";
 import DashboardPage from "@/pages/dashboard-page";
 import PricingPage from "@/pages/pricing-page";
 import ExpertsPage from "@/pages/experts-page";
-import ScanBasicPage from "@/pages/scan-free-page";
+import ScanBasicPage from "@/pages/scan-basic-page";
 import ScanDeepPage from "@/pages/scan-deep-page";
 import ContactPage from "@/pages/contact-page";
 import PaymentPage from "@/pages/payment-page";
@@ -26,6 +26,7 @@ function Router() {
       <Route path="/pricing" component={PricingPage} />
       <Route path="/experts" component={ExpertsPage} />
       <Route path="/contact" component={ContactPage} />
+      <Route path="/scan/basic" component={ScanBasicPage} />
       <Route path="/scan/free" component={ScanBasicPage} />
       <Route path="/scan/deep" component={ScanDeepPage} />
       <Route path="/payment" component={PaymentPage} />

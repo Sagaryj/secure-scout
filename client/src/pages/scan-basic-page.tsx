@@ -43,7 +43,7 @@ export default function ScanBasicPage() {
                 </div>
               </div>
             ) : (
-              <Scanner forceScanType="free" onScanComplete={handleScanComplete} />
+              <Scanner forceScanType="basic" onScanComplete={handleScanComplete} />
             )}
           </div>
 
