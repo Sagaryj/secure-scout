@@ -3,6 +3,7 @@ import FeaturesSection from "@/components/features-section";
 import ToolsSection from "@/components/tools-section";
 import PricingSection from "@/components/pricing-section";
 import ExpertsSection from "@/components/experts-section";
+import TestimonialsSection from "@/components/testimonials-section";
 import CTASection from "@/components/cta-section";
 import { Helmet } from "react-helmet";
 
@@ -17,6 +18,7 @@ const HomePage = () => {
       <HeroSection />
       <FeaturesSection />
       <ToolsSection />
+      <TestimonialsSection />
       <PricingSection />
       <ExpertsSection />
       <CTASection />
