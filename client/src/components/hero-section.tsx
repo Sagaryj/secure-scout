@@ -1,17 +1,9 @@
-import { useState } from "react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { CheckCircle } from "lucide-react";
-import Scanner from "./scanner-input";
-import ScanResults from "./scan-results";
+import { CheckCircle, Shield, AlertTriangle, Search } from "lucide-react";
 import ThreeScene from "./three-scene";
 
 const HeroSection = () => {
-  const [activeScanId, setActiveScanId] = useState<number | null>(null);
-  
-  const handleScanComplete = (scanId: number) => {
-    setActiveScanId(scanId);
-  };
   
   return (
     <section className="matrix-bg py-16 sm:py-24 relative overflow-hidden">
@@ -46,11 +38,11 @@ const HeroSection = () => {
               </li>
             </ul>
             <div className="pt-4 flex flex-wrap gap-4">
-              <a href="#scanner" className="hidden lg:inline-flex">
+              <Link href="/scan/free">
                 <Button size="lg" className="bg-secondary text-primary hover:bg-secondary/90 glow-effect">
-                  Scan now for free
+                  Start Basic Scan
                 </Button>
-              </a>
+              </Link>
               <Link href="/auth">
                 <Button 
                   size="lg" 
@@ -62,18 +54,44 @@ const HeroSection = () => {
               </Link>
             </div>
           </div>
-          <div className="lg:w-1/2 relative w-full min-h-[400px]" id="scanner">
-            {activeScanId ? (
-              <ScanResults 
-                scanId={activeScanId} 
-                className="relative z-10"
-              />
-            ) : (
-              <Scanner 
-                onScanComplete={handleScanComplete} 
-                className="relative z-10"
-              />
-            )}
+          <div className="lg:w-1/2 relative w-full min-h-[400px]" id="security-visual">
+            <div className="relative z-10 h-full flex items-center justify-center">
+              <div className="bg-primary/40 backdrop-blur-md p-8 rounded-xl border border-secondary/20 max-w-lg">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="bg-background/20 p-5 rounded-lg flex flex-col items-center text-center">
+                    <Shield className="h-10 w-10 text-secondary mb-3" />
+                    <h3 className="font-semibold mb-1">Vulnerability Detection</h3>
+                    <p className="text-sm text-muted-foreground">Identify security weaknesses before hackers do</p>
+                  </div>
+                  
+                  <div className="bg-background/20 p-5 rounded-lg flex flex-col items-center text-center">
+                    <AlertTriangle className="h-10 w-10 text-accent mb-3" />
+                    <h3 className="font-semibold mb-1">Risk Assessment</h3>
+                    <p className="text-sm text-muted-foreground">Prioritize threats based on severity</p>
+                  </div>
+                  
+                  <div className="bg-background/20 p-5 rounded-lg flex flex-col items-center text-center">
+                    <Search className="h-10 w-10 text-secondary mb-3" />
+                    <h3 className="font-semibold mb-1">Advanced Scanning</h3>
+                    <p className="text-sm text-muted-foreground">Deep analysis of web applications</p>
+                  </div>
+                  
+                  <div className="bg-background/20 p-5 rounded-lg flex flex-col items-center text-center">
+                    <CheckCircle className="h-10 w-10 text-secondary mb-3" />
+                    <h3 className="font-semibold mb-1">Remediation</h3>
+                    <p className="text-sm text-muted-foreground">Clear guidance to fix security issues</p>
+                  </div>
+                </div>
+                
+                <div className="mt-6 flex justify-center">
+                  <Link href="/scan/free">
+                    <Button size="lg" className="bg-secondary text-primary hover:bg-secondary/90 glow-effect">
+                      Start Basic Scan
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
             
             {/* 3D backdrop */}
             <div className="absolute -top-12 -right-8 h-16 w-16 bg-accent/20 rounded-full blur-xl"></div>
