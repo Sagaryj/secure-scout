@@ -57,6 +57,23 @@ const Header = () => {
             >
               Home
             </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger className={`text-sm font-medium transition-colors cursor-pointer flex items-center ${isActive('/scan') || isActive('/scan/free') || isActive('/scan/deep') ? 'text-secondary' : 'hover:text-secondary'}`}>
+                Scan <ChevronDown className="h-4 w-4 ml-1" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="bg-primary border-secondary/30">
+                <DropdownMenuItem asChild>
+                  <Link href="/scan/free" className="cursor-pointer">
+                    Free Scan
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/scan/deep" className="cursor-pointer">
+                    Deep Scan
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Link 
               href="/pricing" 
               className={`text-sm font-medium transition-colors ${isActive('/pricing') ? 'text-secondary' : 'hover:text-secondary'}`}
@@ -68,6 +85,12 @@ const Header = () => {
               className={`text-sm font-medium transition-colors ${isActive('/experts') ? 'text-secondary' : 'hover:text-secondary'}`}
             >
               Security Experts
+            </Link>
+            <Link 
+              href="/contact" 
+              className={`text-sm font-medium transition-colors ${isActive('/contact') ? 'text-secondary' : 'hover:text-secondary'}`}
+            >
+              Contact Us
             </Link>
           </nav>
           
@@ -149,6 +172,31 @@ const Header = () => {
                       Home
                     </Link>
                   </SheetClose>
+                  
+                  <div className="pl-4 space-y-2">
+                    <div className={`text-lg font-medium ${isActive('/scan') || isActive('/scan/free') || isActive('/scan/deep') ? 'text-secondary' : ''}`}>
+                      Scan
+                    </div>
+                    <div className="space-y-2 pl-2">
+                      <SheetClose asChild>
+                        <Link 
+                          href="/scan/free" 
+                          className={`text-sm font-medium block py-1 transition-colors ${isActive('/scan/free') ? 'text-secondary' : ''}`}
+                        >
+                          Free Scan
+                        </Link>
+                      </SheetClose>
+                      <SheetClose asChild>
+                        <Link 
+                          href="/scan/deep" 
+                          className={`text-sm font-medium block py-1 transition-colors ${isActive('/scan/deep') ? 'text-secondary' : ''}`}
+                        >
+                          Deep Scan
+                        </Link>
+                      </SheetClose>
+                    </div>
+                  </div>
+                  
                   <SheetClose asChild>
                     <Link 
                       href="/pricing" 
@@ -163,6 +211,14 @@ const Header = () => {
                       className={`text-lg font-medium transition-colors ${isActive('/experts') ? 'text-secondary' : ''}`}
                     >
                       Security Experts
+                    </Link>
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <Link 
+                      href="/contact" 
+                      className={`text-lg font-medium transition-colors ${isActive('/contact') ? 'text-secondary' : ''}`}
+                    >
+                      Contact Us
                     </Link>
                   </SheetClose>
                   

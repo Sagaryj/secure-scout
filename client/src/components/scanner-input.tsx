@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import { Radio } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Globe } from "lucide-react";
 import {
   Form,
@@ -17,24 +18,30 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useAuth } from "@/hooks/use-auth";
 import { useToast } from "@/hooks/use-toast";
 import { scanRequestSchema } from "@shared/schema";
 import { submitScan } from "@/lib/scan-utils";
+import { Link, useLocation } from "wouter";
+import ThreeScene from "./three-scene";
 
 type ScannerProps = {
   onScanComplete?: (scanId: number) => void;
   className?: string;
+  forceScanType?: "free" | "deep";
 };
 
-const Scanner = ({ onScanComplete, className = "" }: ScannerProps) => {
+const Scanner = ({ onScanComplete, className = "", forceScanType }: ScannerProps) => {
   const { toast } = useToast();
   const [isScanning, setIsScanning] = useState(false);
+  const { user } = useAuth();
+  const [, navigate] = useLocation();
 
   const form = useForm<z.infer<typeof scanRequestSchema>>({
     resolver: zodResolver(scanRequestSchema),
     defaultValues: {
       targetUrl: "",
-      scanType: "quick",
+      scanType: forceScanType === "deep" ? "deep" : "quick",
     },
   });
 
@@ -62,6 +69,16 @@ const Scanner = ({ onScanComplete, className = "" }: ScannerProps) => {
   });
 
   function onSubmit(values: z.infer<typeof scanRequestSchema>) {
+    // If this is a deep scan and user is not logged in, redirect to pricing
+    if (values.scanType === "deep" && !user) {
+      navigate("/pricing");
+      toast({
+        title: "Subscription Required",
+        description: "Deep scanning requires a subscription. Please see our pricing options.",
+      });
+      return;
+    }
+
     setIsScanning(true);
     scanMutation.mutate(values);
   }
