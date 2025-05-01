@@ -86,7 +86,7 @@ const Scanner = ({ onScanComplete, className = "", forceScanType }: ScannerProps
     }
     
     // Check if basic scan limit is reached for non-subscribed users
-    if ((values.scanType === "quick" || forceScanType === "free") && !user && basicScanCount >= 3) {
+    if ((values.scanType === "quick" || forceScanType === "free" || forceScanType === "basic") && !user && basicScanCount >= 3) {
       navigate("/pricing");
       toast({
         title: "Basic Scan Limit Reached",
@@ -97,7 +97,7 @@ const Scanner = ({ onScanComplete, className = "", forceScanType }: ScannerProps
     }
     
     // If this is a basic scan, increment the count
-    if ((values.scanType === "quick" || forceScanType === "free") && !user) {
+    if ((values.scanType === "quick" || forceScanType === "free" || forceScanType === "basic") && !user) {
       const newCount = basicScanCount + 1;
       setBasicScanCount(newCount);
       localStorage.setItem('basicScanCount', newCount.toString());
@@ -122,11 +122,11 @@ const Scanner = ({ onScanComplete, className = "", forceScanType }: ScannerProps
     scanMutation.mutate(values);
   }
 
-  const showFreeBadge = forceScanType === "free" || !forceScanType;
+  const showBasicBadge = forceScanType === "free" || forceScanType === "basic" || !forceScanType;
   
   return (
     <Card className={`bg-primary/80 backdrop-blur-md border-secondary/30 relative ${className}`}>
-      {showFreeBadge && (
+      {showBasicBadge && (
         <Badge className="absolute -top-2 -right-2 bg-secondary text-primary px-3 py-1">
           Basic Scan
         </Badge>
@@ -249,7 +249,7 @@ const Scanner = ({ onScanComplete, className = "", forceScanType }: ScannerProps
                 </div>
               )}
               
-              {forceScanType === "free" && (
+              {(forceScanType === "free" || forceScanType === "basic") && (
                 <div className="bg-primary/50 rounded-lg p-4 border border-secondary/20">
                   <div className="flex justify-between items-center">
                     <div>
