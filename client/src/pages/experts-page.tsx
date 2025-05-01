@@ -28,7 +28,8 @@ type ExpertCardProps = {
   certifications: string[];
   experience: string;
   specialties: string[];
-  imageColor: string;
+  imageUrl?: string;
+  imageColor?: string;
 };
 
 const ExpertCard = ({ 
@@ -38,11 +39,22 @@ const ExpertCard = ({
   certifications, 
   experience, 
   specialties,
+  imageUrl,
   imageColor
 }: ExpertCardProps) => (
   <Card className="bg-primary/70 rounded-xl overflow-hidden border border-secondary/20 hover:border-secondary/40 transition-all">
     <div className="relative">
-      <div className={`w-full h-64 ${imageColor}`}></div>
+      {imageUrl ? (
+        <div className="w-full h-64 bg-primary/80 overflow-hidden">
+          <img 
+            src={imageUrl} 
+            alt={`${name} - ${title}`} 
+            className="w-full h-full object-cover object-center opacity-90"
+          />
+        </div>
+      ) : (
+        <div className={`w-full h-64 ${imageColor}`}></div>
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent"></div>
     </div>
     <div className="p-6 relative -mt-12">
@@ -153,7 +165,7 @@ const ExpertsPage = () => {
         "Advanced penetration testing",
         "Security program development"
       ],
-      imageColor: "bg-gradient-to-br from-secondary/20 to-accent/20"
+      imageUrl: "/images/experts/expert1.jpg"
     },
     {
       name: "Sarah Chen",
@@ -166,7 +178,7 @@ const ExpertsPage = () => {
         "Modern web framework security",
         "Secure SDLC implementation"
       ],
-      imageColor: "bg-gradient-to-br from-accent/20 to-secondary/20"
+      imageUrl: "/images/experts/expert2.png"
     },
     {
       name: "David Wilson",
@@ -179,7 +191,7 @@ const ExpertsPage = () => {
         "Cloud infrastructure security",
         "Zero trust architecture"
       ],
-      imageColor: "bg-gradient-to-br from-blue-500/20 to-secondary/20"
+      imageUrl: "/images/experts/expert3.png"
     },
     {
       name: "Maya Patel",
@@ -192,7 +204,7 @@ const ExpertsPage = () => {
         "Reverse engineering",
         "Red team operations"
       ],
-      imageColor: "bg-gradient-to-br from-purple-500/20 to-accent/20"
+      imageUrl: "/images/experts/expert4.png"
     }
   ];
   
