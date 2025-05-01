@@ -64,7 +64,7 @@ const Header = () => {
               <DropdownMenuContent align="center" className="bg-primary border-secondary/30">
                 <DropdownMenuItem asChild>
                   <Link href="/scan/free" className="cursor-pointer">
-                    Free Scan
+                    Basic Scan
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
@@ -183,7 +183,7 @@ const Header = () => {
                           href="/scan/free" 
                           className={`text-sm font-medium block py-1 transition-colors ${isActive('/scan/free') ? 'text-secondary' : ''}`}
                         >
-                          Free Scan
+                          Basic Scan
                         </Link>
                       </SheetClose>
                       <SheetClose asChild>
