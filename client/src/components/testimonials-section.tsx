@@ -116,17 +116,6 @@ const TestimonialsSection = () => {
             <Testimonial key={index} {...testimonial} />
           ))}
         </div>
-        
-        <div className="mt-12 text-center">
-          <p className="text-sm text-muted-foreground mb-3">Trusted by security teams worldwide</p>
-          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
-            <div className="text-lg font-semibold text-secondary/70">Vodafone</div>
-            <div className="text-lg font-semibold text-secondary/70">IBM Security</div>
-            <div className="text-lg font-semibold text-secondary/70">Accenture</div>
-            <div className="text-lg font-semibold text-secondary/70">Microsoft</div>
-            <div className="text-lg font-semibold text-secondary/70">Cisco</div>
-          </div>
-        </div>
       </div>
     </section>
   );

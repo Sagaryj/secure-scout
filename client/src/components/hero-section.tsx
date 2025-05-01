@@ -103,31 +103,6 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        
-        {/* Trust bar */}
-        <div className="mt-16 border-t border-secondary/20 pt-8">
-          <p className="text-center text-sm text-muted-foreground mb-6">Trusted by 1,500+ security teams in 119+ countries</p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center opacity-70">
-            <div className="h-8 flex items-center">
-              <img src="/images/logos/vodafone.svg" alt="Vodafone" className="h-8" />
-            </div>
-            <div className="h-8 flex items-center">
-              <img src="/images/logos/accenture.svg" alt="Accenture" className="h-8" />
-            </div>
-            <div className="h-8 flex items-center">
-              <img src="/images/logos/microsoft.svg" alt="Microsoft" className="h-8" />
-            </div>
-            <div className="h-8 flex items-center">
-              <img src="/images/logos/ibm.svg" alt="IBM" className="h-8" />
-            </div>
-            <div className="h-8 flex items-center">
-              <img src="/images/logos/cisco.svg" alt="Cisco" className="h-8" />
-            </div>
-            <div className="h-8 flex items-center">
-              <img src="/images/logos/amazon.svg" alt="Amazon" className="h-8" />
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
